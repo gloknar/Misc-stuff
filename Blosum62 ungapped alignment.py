@@ -1,6 +1,5 @@
-### Ejercicio 4 (2'5 puntos)  ###
-# Programa una función que reciba como parámetros dos PROTEINAS y una MATRIZ DE PUNTUACIONES BLOSUM62.
-# Las secuencias peptidicas tendrán la misma longitud (ungapped alignment).
+# Programa una función que reciba como parámetros dos PROTEÍNAS y una MATRIZ DE PUNTUACIONES BLOSUM62.
+# Las secuencias peptídicas tendrán la misma longitud (ungapped alignment).
 # La información con las puntuaciones debe tener la siguiente estructura:
 #    A  R  N  D  C  Q  E  G  H  I  L  K  M  F  P  S  T  W  Y  V  B  Z  X  *
 # A  4 -1 -2 -2  0 -1 -1  0 -2 -1 -1 -1 -1 -2 -1  1  0 -3 -2  0 -2 -1  0 -4 
@@ -28,7 +27,7 @@
 # X  0 -1 -1 -1 -2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -2  0  0 -2 -1 -1 -1 -1 -1 -4 
 # * -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4  1 
  
-# La función debe calcular la puntuación del alineamiento de las dos secuencias peptidicas empleando las puntuaciones definidas. 
+# La función debe calcular la puntuación del alineamiento de las dos secuencias peptídicas empleando las puntuaciones definidas. 
 # La función debe devolver la puntuación final obtenida.
 ###############################
 
@@ -44,7 +43,8 @@ secuencia2 = "ACCCCCCTATATCATATCACACATCGCAATCA*"
 
 def alineamiento_blosum62(sec1, sec2):
     """
-    Descripcion de la funcion aqui
+    Funcion que recibe como parametros dos proteinas de igual longitud y emplea la matriz de sustituciones Blosum62 para calcular 
+    la puntuacion del alineamiento.
     
     
     >>> sec1 = "ATA"
@@ -96,24 +96,24 @@ def alineamiento_blosum62(sec1, sec2):
     ######### INICIALIZACIÓN DE VARIABLES #############
     ###################################################
     
-    score = 0                                           # Iniciamos una puntuacion inicial de 0 antes de comenzar el alineamiento (=bucle for)
+    score = 0                                           # Iniciamos una puntuación inicial de 0 antes de comenzar el alineamiento (=bucle for)
     mejor_puntuacion = -5                               # Iniciamos una variable que contenga el mejor alineamiento. Empezamos en -5 porque no hay alineamiento inferior a -5
     peor_puntuacion = 12                                # Ídem para el peor alineamiento residuo-residuo
     sec1= sec1.upper()
     sec2= sec2.upper()
-    
+
 
 
     ###################################################
-    ##################### CODIGO ######################
+    ##################### CÓDIGO ######################
     ###################################################
 
     for i in range(len(sec1)):
         score += BLOSUM62[sec1[i]][sec2[i]]
-        if BLOSUM62[sec1[i]][sec2[i]] > mejor_puntuacion:               # Aqui buscamos el mejor alineamiento residuo-residuo y guardamos su puntuación y qué residuos son
+        if BLOSUM62[sec1[i]][sec2[i]] > mejor_puntuacion:               # Aquí buscamos el mejor alineamiento residuo-residuo y guardamos su puntuación y qué residuos son
             mejor_puntuacion = BLOSUM62[sec1[i]][sec2[i]]
             par_residuos_max =  str(sec1[i]) + "-" + str(sec2[i])
-        if BLOSUM62[sec1[i]][sec2[i]] < peor_puntuacion:                # Aqui buscamos el peor alineamiento residuo-residuo y guardamos su puntuación y qué residuos son
+        if BLOSUM62[sec1[i]][sec2[i]] < peor_puntuacion:                # Aquí buscamos el peor alineamiento residuo-residuo y guardamos su puntuación y qué residuos son
             peor_puntuacion = BLOSUM62[sec1[i]][sec2[i]]
             par_residuos_min = str(sec1[i]) + "-" + str(sec2[i])
     return (score, mejor_puntuacion, par_residuos_max, peor_puntuacion, par_residuos_min)
